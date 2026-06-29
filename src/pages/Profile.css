@@ -1,0 +1,67 @@
+.profile-page {
+  padding: 2.5rem 0 5rem;
+}
+
+.profile-page__wrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-head,
+.profile-block {
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.profile-head p {
+  color: var(--color-text-muted);
+}
+
+.profile-block h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.profile-list,
+.profile-cards {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.profile-cards li,
+.wine-edit {
+  border: 1px solid rgba(92, 26, 46, 0.14);
+  border-radius: 10px;
+  padding: 0.65rem;
+  background: #fff;
+}
+
+.profile-field {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.profile-field textarea,
+.wine-add input,
+.wine-add textarea,
+.wine-edit input {
+  width: 100%;
+  border: 1px solid rgba(92, 26, 46, 0.24);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+}
+
+.wine-edit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.45rem;
+}
+
+.wine-add {
+  margin: 0.8rem 0;
+  display: grid;
+  gap: 0.45rem;
+}

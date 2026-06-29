@@ -1,0 +1,252 @@
+.winery-detail {
+  padding: 2.5rem 0 5rem;
+}
+
+.winery-detail__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.winery-detail__head-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.winery-detail__favorite {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.82rem;
+}
+
+.winery-detail__title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+}
+
+.winery-detail__meta {
+  margin-top: 0.4rem;
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+}
+
+.winery-detail__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(40, 140, 80, 0.12);
+  color: #1f6e3f;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.winery-gallery {
+  margin-bottom: 2.25rem;
+}
+
+.winery-gallery__main {
+  width: 100%;
+  height: min(430px, 55vw);
+  min-height: 240px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.winery-gallery__grid {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.winery-gallery__thumb {
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.winery-history {
+  margin-bottom: 2.25rem;
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  border-radius: 16px;
+  padding: 1.3rem 1.2rem;
+}
+
+.winery-history .section-title {
+  margin-bottom: 0.7rem;
+}
+
+.winery-history p {
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+.winery-wines {
+  margin-bottom: 2.25rem;
+}
+
+.wine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.wine-card {
+  background: var(--color-white);
+  border-radius: 16px;
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  overflow: hidden;
+}
+
+.wine-card__image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.wine-card__body {
+  padding: 1rem;
+}
+
+.wine-card__name {
+  font-size: 1.1rem;
+}
+
+.wine-card__type {
+  color: var(--color-wine);
+  font-weight: 600;
+  margin: 0.15rem 0 0.5rem;
+}
+
+.wine-card__info {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.wine-card__price {
+  margin-top: 0.45rem;
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: var(--color-wine-dark);
+}
+
+.wine-card__description {
+  margin: 0.55rem 0 0.85rem;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.wine-card__button {
+  width: 100%;
+  padding: 0.62rem 1rem;
+}
+
+.visit-request {
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  border-radius: 16px;
+  padding: 1.2rem;
+}
+
+.visit-request__button {
+  width: 100%;
+  font-size: 1.02rem;
+  padding: 0.92rem 1.2rem;
+}
+
+.visit-request__success {
+  margin-top: 0.75rem;
+  color: #1f6e3f;
+  font-weight: 600;
+}
+
+.visit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  place-items: center;
+  background: rgba(20, 10, 14, 0.58);
+  padding: 1rem;
+}
+
+.visit-modal__content {
+  position: relative;
+  width: min(520px, 100%);
+  background: var(--color-white);
+  border-radius: 14px;
+  padding: 1.1rem;
+  border: 1px solid rgba(92, 26, 46, 0.16);
+  box-shadow: var(--shadow-medium);
+}
+
+.visit-modal__close {
+  position: absolute;
+  right: 0.8rem;
+  top: 0.65rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(92, 26, 46, 0.2);
+  color: var(--color-wine-dark);
+  font-weight: 700;
+}
+
+.visit-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.visit-form__title {
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+
+.visit-form__field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  color: var(--color-wine-dark);
+}
+
+.visit-form input,
+.visit-form textarea {
+  width: 100%;
+  border: 1px solid rgba(92, 26, 46, 0.22);
+  background: #fff;
+  color: var(--color-text);
+  border-radius: 10px;
+  padding: 0.72rem 0.9rem;
+  font: inherit;
+}
+
+.visit-form input:focus,
+.visit-form textarea:focus {
+  outline: none;
+  border-color: var(--color-wine);
+  box-shadow: 0 0 0 3px rgba(92, 26, 46, 0.12);
+}
+
+@media (max-width: 700px) {
+  .winery-detail__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .winery-detail__head-actions {
+    align-items: flex-start;
+  }
+
+  .winery-gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .winery-gallery__thumb {
+    height: 185px;
+  }
+}

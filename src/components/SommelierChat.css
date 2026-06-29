@@ -1,0 +1,116 @@
+.sommelier {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 250;
+}
+
+.sommelier__trigger {
+  background: var(--color-wine);
+  color: var(--color-cream);
+  border-radius: 999px;
+  padding: 0.72rem 1rem;
+  box-shadow: var(--shadow-medium);
+  font-weight: 600;
+}
+
+.sommelier__panel {
+  width: min(380px, calc(100vw - 2rem));
+  height: min(560px, 70vh);
+  margin-bottom: 0.7rem;
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.2);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  box-shadow: var(--shadow-medium);
+}
+
+.sommelier__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.9rem;
+  background: rgba(92, 26, 46, 0.08);
+}
+
+.sommelier__close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(92, 26, 46, 0.25);
+  font-weight: 700;
+}
+
+.sommelier__messages {
+  overflow: auto;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.sommelier__message {
+  padding: 0.65rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.sommelier__message p {
+  margin: 0;
+}
+
+.sommelier__message--bot {
+  background: #f6f3ee;
+}
+
+.sommelier__message--user {
+  background: #efe0e5;
+}
+
+.sommelier__recommendations {
+  margin-top: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sommelier__recommendations li {
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.16);
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.sommelier__recommendations a {
+  color: var(--color-wine);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.sommelier__reason {
+  margin: 0.2rem 0 0.35rem !important;
+  color: var(--color-text-muted);
+  font-size: 0.84rem;
+}
+
+.sommelier__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid rgba(92, 26, 46, 0.1);
+}
+
+.sommelier__form input {
+  border: 1px solid rgba(92, 26, 46, 0.25);
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+}
+
+.sommelier__form button {
+  background: var(--color-wine);
+  color: var(--color-cream);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+}

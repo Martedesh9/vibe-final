@@ -1,0 +1,144 @@
+:root {
+  --color-wine: #5c1a2e;
+  --color-wine-dark: #3d0f1e;
+  --color-wine-light: #7a2d45;
+  --color-cream: #f5f0e8;
+  --color-cream-dark: #e8dfd0;
+  --color-gold: #b8956a;
+  --color-gold-light: #d4b896;
+  --color-text: #2c1810;
+  --color-text-muted: #6b5344;
+  --color-white: #ffffff;
+
+  --font-serif: 'Noto Serif Georgian', Georgia, serif;
+  --font-sans: 'Noto Sans Georgian', system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 24px rgba(92, 26, 46, 0.08);
+  --shadow-medium: 0 8px 32px rgba(92, 26, 46, 0.12);
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --header-height: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-wine-dark);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--color-wine);
+  color: var(--color-cream);
+}
+
+.btn-primary:hover {
+  background: var(--color-wine-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-outline {
+  border: 1.5px solid var(--color-wine);
+  color: var(--color-wine);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--color-wine);
+  color: var(--color-cream);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 560px;
+}
+
+.page-placeholder {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.page-placeholder h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 0.75rem;
+}
+
+.page-placeholder p {
+  color: var(--color-text-muted);
+  max-width: 400px;
+}

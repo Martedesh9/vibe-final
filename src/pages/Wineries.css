@@ -1,0 +1,113 @@
+.wineries-page {
+  padding: 3rem 0 5rem;
+}
+
+.wineries-page__header {
+  margin-bottom: 1.5rem;
+}
+
+.wineries-filter {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 0.85rem;
+  margin: 1.75rem 0 2rem;
+}
+
+.wineries-filter__search,
+.wineries-filter__region {
+  width: 100%;
+  border: 1px solid rgba(92, 26, 46, 0.22);
+  background: var(--color-white);
+  color: var(--color-text);
+  border-radius: 12px;
+  padding: 0.82rem 1rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wineries-filter__search::placeholder {
+  color: var(--color-text-muted);
+}
+
+.wineries-filter__search:focus,
+.wineries-filter__region:focus {
+  outline: none;
+  border-color: var(--color-wine);
+  box-shadow: 0 0 0 3px rgba(92, 26, 46, 0.12);
+}
+
+.wineries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.winery-item {
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.winery-item:hover,
+.winery-item:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+  border-color: rgba(92, 26, 46, 0.28);
+}
+
+.winery-item__image {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.winery-item__body {
+  padding: 1rem 1rem 1.15rem;
+}
+
+.winery-item__name {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.winery-item__meta {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-wine);
+  margin-bottom: 0.5rem;
+}
+
+.winery-item__description {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  margin-bottom: 0.9rem;
+}
+
+.winery-item__button {
+  padding: 0.62rem 1.2rem;
+}
+
+.wineries-empty {
+  margin-top: 2rem;
+  padding: 1rem 1.15rem;
+  border-radius: 12px;
+  background: var(--color-white);
+  border: 1px dashed rgba(92, 26, 46, 0.28);
+  color: var(--color-wine-dark);
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .wineries-filter {
+    grid-template-columns: 1fr;
+  }
+
+  .winery-item__image {
+    height: 195px;
+  }
+}

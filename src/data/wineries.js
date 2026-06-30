@@ -146,8 +146,8 @@ export const wineriesData = [
       'მარანი რაჭა პატარა მთიან სოფელში დაარსდა, სადაც ვაზი მკაცრ კლიმატში იზრდება და განსაკუთრებულ არომატულ პროფილს იძენს. დამფუძნებელმა ოჯახმა თავდაპირველად მხოლოდ საკუთარი მოხმარებისთვის ამზადებდა ღვინოს, თუმცა ადგილობრივი მოთხოვნის ზრდასთან ერთად მცირე კომერციული წარმოებაც დაიწყო. დღეს მარანი ცნობილია დაბალანსებული ნახევრადტკბილი და მშრალი წითელი ღვინოებით, რომლებიც რაჭის მიკროზონას გამოკვეთილად გამოხატავს.',
     image: '/images/winery4-exterior.jpg',
     gallery: [
-      '/images/winery2-exterior.jpg',
-      '/images/winery3-exterior.jpg',
+      '/images/racha-interior1.jpg',
+      '/images/racha-interior-2.jpg',
       '/images/racha-interior3.jpg',
     ],
     wines: [
@@ -206,7 +206,7 @@ export const wineriesData = [
     gallery: [
       '/images/karavi-interior1.jpg',
       '/images/karavi-interior2.jpg',
-      '/images/winery6-exterior.jpg',
+      '/images/karavi-interior3.jpg',
     ],
     wines: [
       {
@@ -302,7 +302,7 @@ export const wineriesData = [
     gallery: [
       '/images/oda-interior1.jpg',
       '/images/oda-interior2.jpg',
-      '/images/winery6-exterior.jpg',
+      '/images/oda-interior3.jpg',
     ],
     wines: [
       {

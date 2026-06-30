@@ -1,4 +1,4 @@
-const WEBHOOK_URL = 'https://mtedeshvili.app.n8n.cloud/webhook/sommelier'
+// const WEBHOOK_URL = 'https://mtedeshvili.app.n8n.cloud/webhook/sommelier'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { wineriesData } from '../data/wineries'
@@ -92,56 +92,24 @@ export default function SommelierChat() {
     [],
   )
 
-  const sendMessage = async (event) => {
+  const sendMessage = (event) => {
     event.preventDefault()
     const text = input.trim()
     if (!text) return
-  
+
+    const recommendations = getRecommendations(text)
+
     setMessages((prev) => [
       ...prev,
       { id: `u-${Date.now()}`, role: 'user', text, recommendations: [] },
-      { id: `b-loading`, role: 'bot', text: '...', recommendations: [] },
+      {
+        id: `b-${Date.now()}`,
+        role: 'bot',
+        text: 'აი ჩემი რეკომენდაციები:',
+        recommendations,
+      },
     ])
     setInput('')
-  
-    try {
-      const response = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
-      })
-      const raw = await response.text()
-      const data = JSON.parse(raw.replace(/```json|```/g, '').trim())
-  
-      setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === 'b-loading'
-            ? {
-                ...msg,
-                id: `b-${Date.now()}`,
-                text: data.reply || 'აი რეკომენდაციები:',
-                recommendations: (data.recommendations || []).map((r) => ({
-                  wine: {
-                    id: r.wineryId + '-' + r.wineName,
-                    name: r.wineName,
-                    wineryId: r.wineryId,
-                    wineryName: r.wineryName,
-                  },
-                  reason: r.reason,
-                })),
-              }
-            : msg,
-        ),
-      )
-    } catch {
-      setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === 'b-loading'
-            ? { ...msg, id: `b-err`, text: 'სომელიე ამჟამად მიუწვდომელია, სცადე მოგვიანებით.' }
-            : msg,
-        ),
-      )
-    }
   }
 
   return (

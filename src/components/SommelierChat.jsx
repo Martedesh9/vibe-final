@@ -1,5 +1,5 @@
 // const WEBHOOK_URL = 'https://mtedeshvili.app.n8n.cloud/webhook/sommelier'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { wineriesData } from '../data/wineries'
 import './SommelierChat.css'
@@ -77,20 +77,19 @@ function getRecommendations(query) {
   }))
 }
 
+const GREETING = {
+  id: 'greeting',
+  role: 'bot',
+  text: 'გამარჯობა! მითხარი რა გემოვნება გაქვს ან რა კერძთან გინდა ღვინო.',
+  recommendations: [],
+}
+
+let msgCounter = 0
+
 export default function SommelierChat() {
   const [isOpen, setIsOpen] = useState(false)
   const [input, setInput] = useState('')
-  const [messages, setMessages] = useState([])
-
-  const greeting = useMemo(
-    () => ({
-      id: 'greeting',
-      role: 'bot',
-      text: 'გამარჯობა! მითხარი რა გემოვნება გაქვს ან რა კერძთან გინდა ღვინო.',
-      recommendations: [],
-    }),
-    [],
-  )
+  const [messages, setMessages] = useState([GREETING])
 
   const sendMessage = (event) => {
     event.preventDefault()
@@ -98,12 +97,13 @@ export default function SommelierChat() {
     if (!text) return
 
     const recommendations = getRecommendations(text)
+    const ts = ++msgCounter
 
     setMessages((prev) => [
       ...prev,
-      { id: `u-${Date.now()}`, role: 'user', text, recommendations: [] },
+      { id: `u-${ts}`, role: 'user', text, recommendations: [] },
       {
-        id: `b-${Date.now()}`,
+        id: `b-${ts}`,
         role: 'bot',
         text: 'აი ჩემი რეკომენდაციები:',
         recommendations,

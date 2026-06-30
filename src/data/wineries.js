@@ -33,7 +33,7 @@ export const wineriesData = [
         year: 2021,
         priceGel: 58,
         description: 'მუქი კენკრის არომატი, რბილი ტანინები და ხანგრძლივი დაბოლოება.',
-        image: '/images/wine-red.jpg',
+        image: '/images/wine.jpg',
       },
       {
         id: 'teliani-rkatsiteli-2022',

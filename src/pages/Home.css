@@ -57,23 +57,41 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.how__step-wrapper {
+  display: inline-flex;
+  align-items: center;
   gap: 0.9rem;
 }
 
 .how__step {
   display: inline-flex;
   align-items: center;
-  gap: 0.9rem;
   padding: 0.95rem 1.2rem;
   border-radius: 999px;
   border: 1px solid rgba(92, 26, 46, 0.14);
   background: var(--color-cream);
+  transition: background 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+
+.how__step:hover {
+  background: var(--color-wine);
+  border-color: var(--color-wine);
+}
+
+.how__step:hover .how__step-title {
+  color: var(--color-cream);
 }
 
 .how__step-title {
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-wine-dark);
+  transition: color 0.2s ease;
 }
 
 .how__arrow {

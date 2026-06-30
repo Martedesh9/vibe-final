@@ -20,15 +20,9 @@ const featuredWineries = [
 ]
 
 const steps = [
-  {
-    title: 'აღმოაჩინე',
-  },
-  {
-    title: 'დაუკავშირდი',
-  },
-  {
-    title: 'ეწვიე ან შეუკვეთე',
-  },
+  { title: 'აღმოაჩინე', to: '/maranebi' },
+  { title: 'დაუკავშირდი', to: '/auth' },
+  { title: 'ეწვიე ან შეუკვეთე', to: '/maranebi' },
 ]
 
 export default function Home() {
@@ -51,8 +45,10 @@ export default function Home() {
           <h2 className="section-title how__title">როგორ მუშაობს</h2>
           <div className="how__steps">
             {steps.map((step, index) => (
-              <div key={step.title} className="how__step">
-                <span className="how__step-title">{step.title}</span>
+              <div key={step.title} className="how__step-wrapper">
+                <Link to={step.to} className="how__step">
+                  <span className="how__step-title">{step.title}</span>
+                </Link>
                 {index < steps.length - 1 && <span className="how__arrow">→</span>}
               </div>
             ))}

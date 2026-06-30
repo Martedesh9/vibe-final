@@ -6,27 +6,34 @@ export const wineriesData = [
     village: 'თელიანი',
     foundedYear: 1998,
     acceptsVisitors: true,
+    vineyardHa: 3.2,
+    visit: {
+      includes: [
+        { title: 'დეგუსტაცია', detail: '5 ღვინო · 45 წუთი' },
+        { title: 'ქართული სუფრა', detail: '2 საათი' },
+        { title: 'მარნის ტური', detail: '30 წუთი' },
+      ],
+      pricePerPerson: 85,
+    },
     description: 'ოჯახური მარანი, სადაც ქვევრის ტრადიცია თანამედროვე მიდგომას ხვდება.',
     history:
       'მარანი თელიანი 1998 წელს დაარსდა ერთი ოჯახის მიერ, რომლის მთავარი მიზანი იყო წინაპრებისგან მიღებული ღვინის დაყენების წესის შენარჩუნება. პირველ წლებში მცირე რაოდენობის საფერავი და რქაწითელი მხოლოდ ადგილობრივ ბაზარზე იყიდებოდა, თუმცა დროთა განმავლობაში მარანმა საკუთარი სტილი ჩამოაყალიბა — დაბალი ჩარევა, ადგილობრივი საფუარი და ქვევრის ხანგრძლივი დაძველება. დღეს მარანში სტუმრები ხედავენ ვენახიდან ბოთლამდე მთელ პროცესს, ეცნობიან ოჯახის ისტორიას და აგემოვნებენ კლასიკურ და ექსპერიმენტულ პარტიებს.',
-    image:
-      'https://images.unsplash.com/photo-1563141320-9f0d95e8d2e8?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/winery3-exterior.jpg',
     gallery: [
-      'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1528821128474-25f6f37f7a49?auto=format&fit=crop&w=1200&q=80',
+      '/images/winery2-exterior.jpg',
+      '/images/winery3-exterior.jpg',
+      '/images/winery6-exterior.jpg',
     ],
     wines: [
       {
         id: 'teliani-saperavi-2021',
-        name: 'საფერავი Reserve',
+        name: 'საფერავი',
         type: 'მშრალი წითელი',
         grape: 'საფერავი',
         year: 2021,
         priceGel: 58,
         description: 'მუქი კენკრის არომატი, რბილი ტანინები და ხანგრძლივი დაბოლოება.',
-        image:
-          'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-red.jpg',
       },
       {
         id: 'teliani-rkatsiteli-2022',
@@ -36,8 +43,27 @@ export const wineriesData = [
         year: 2022,
         priceGel: 46,
         description: 'ყვავილოვანი ტონი და ციტრუსის მსუბუქი ნოტები, სასიამოვნო ტექსტურით.',
-        image:
-          'https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-amber.jpg',
+      },
+      {
+        id: 'teliani-mtsvivani-2023',
+        name: 'მწვივანი',
+        type: 'მშრალი თეთრი',
+        grape: 'მწვივანი',
+        year: 2023,
+        priceGel: 42,
+        description: 'სუფთა, მინერალური ხასიათი და სასიამოვნო სიმჟავე.',
+        image: '/images/wine-white.jpg',
+      },
+      {
+        id: 'teliani-kakhetian-blend-2020',
+        name: 'კახური კლასიკი',
+        type: 'მშრალი წითელი',
+        grape: 'საფერავი, კაბერნე',
+        year: 2020,
+        priceGel: 65,
+        description: 'ძლიერი სტრუქტურა, კენკრისა და შავი ხილის ინტენსიური ბუკეტი.',
+        image: '/images/wine-red.jpg',
       },
     ],
   },
@@ -48,15 +74,23 @@ export const wineriesData = [
     village: 'გურჯაანი',
     foundedYear: 2006,
     acceptsVisitors: true,
+    vineyardHa: 5.8,
+    visit: {
+      includes: [
+        { title: 'დეგუსტაცია', detail: '6 ღვინო · 50 წუთი' },
+        { title: 'ქართული სუფრა', detail: '2.5 საათი' },
+        { title: 'მარნის ტური', detail: '30 წუთი' },
+      ],
+      pricePerPerson: 90,
+    },
     description: 'ბიო-მევენახეობა და მცირე პარტიებით ჩამოსხმული ავთენტური ღვინოები.',
     history:
       'მარანი გურჯაანი სამი ძმის საერთო იდეიდან დაიბადა. მათ მამის ძველი მარანი აღადგინეს და ბიო-მევენახეობის პრაქტიკები დანერგეს. აქ ყველა პარტია მცირე მოცულობით მზადდება, რათა თითო მოსავლის ხასიათი მაქსიმალურად შენარჩუნდეს. ოჯახი განსაკუთრებულ ყურადღებას უთმობს ვაზის ხელით მოვლას, ქვევრების ჰიგიენას და სტუმრების მიღებას, რის გამოც მარანი როგორც ადგილობრივ, ისე უცხოელ ენთუზიასტრებში პოპულარული გახდა.',
-    image:
-      'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/gurjaani.jpg',
     gallery: [
-      'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1462887749044-b47cb05b83b8?auto=format&fit=crop&w=1200&q=80',
+      '/images/winery2-exterior.jpg',
+      '/images/winery3-exterior.jpg',
+      '/images/winery6-exterior.jpg',
     ],
     wines: [
       {
@@ -67,8 +101,7 @@ export const wineriesData = [
         year: 2023,
         priceGel: 44,
         description: 'ტროპიკული ხილისა და თაფლის ტონები, სუფთა და ელეგანტური სტილი.',
-        image:
-          'https://images.unsplash.com/photo-1514361892635-eae31ec0d1eb?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-white.jpg',
       },
       {
         id: 'gurjaani-saperavi-2020',
@@ -78,8 +111,17 @@ export const wineriesData = [
         year: 2020,
         priceGel: 52,
         description: 'ინტენსიური ფერი, მაყვლის არომატი და სტრუქტურირებული სხეული.',
-        image:
-          'https://images.unsplash.com/photo-1504712598893-24159a89200e?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-red.jpg',
+      },
+      {
+        id: 'gurjaani-mtsvane-2022',
+        name: 'მწვანე ქვევრი',
+        type: 'მშრალი ქარვისფერი',
+        grape: 'მწვანე',
+        year: 2022,
+        priceGel: 48,
+        description: 'ქარვისფერი ტონი, ვაშლისა და ყვავილების სუნი, სასიამოვნო ოქსიდაციური ხასიათი.',
+        image: '/images/wine-amber.jpg',
       },
     ],
   },
@@ -90,15 +132,23 @@ export const wineriesData = [
     village: 'ხვანჭკარა',
     foundedYear: 2012,
     acceptsVisitors: false,
+    vineyardHa: 2.1,
+    visit: {
+      includes: [
+        { title: 'დეგუსტაცია', detail: '4 ღვინო · 40 წუთი' },
+        { title: 'ქართული სუფრა', detail: '2 საათი' },
+        { title: 'მარნის ტური', detail: '20 წუთი' },
+      ],
+      pricePerPerson: 75,
+    },
     description: 'მთის კლიმატში გაზრდილი ვაზი და გამორჩეული არომატების ღვინო.',
     history:
       'მარანი რაჭა პატარა მთიან სოფელში დაარსდა, სადაც ვაზი მკაცრ კლიმატში იზრდება და განსაკუთრებულ არომატულ პროფილს იძენს. დამფუძნებელმა ოჯახმა თავდაპირველად მხოლოდ საკუთარი მოხმარებისთვის ამზადებდა ღვინოს, თუმცა ადგილობრივი მოთხოვნის ზრდასთან ერთად მცირე კომერციული წარმოებაც დაიწყო. დღეს მარანი ცნობილია დაბალანსებული ნახევრადტკბილი და მშრალი წითელი ღვინოებით, რომლებიც რაჭის მიკროზონას გამოკვეთილად გამოხატავს.',
-    image:
-      'https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/winery4-exterior.jpg',
     gallery: [
-      'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1528821128474-25f6f37f7a49?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1563141320-9f0d95e8d2e8?auto=format&fit=crop&w=1200&q=80',
+      '/images/winery2-exterior.jpg',
+      '/images/winery3-exterior.jpg',
+      '/images/winery6-exterior.jpg',
     ],
     wines: [
       {
@@ -109,8 +159,7 @@ export const wineriesData = [
         year: 2022,
         priceGel: 62,
         description: 'წითელი ხილისა და მსუბუქი სანელებლების ტონები, რბილი სტრუქტურა.',
-        image:
-          'https://images.unsplash.com/photo-1518735869015-566a18eae4b6?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-red.jpg',
       },
       {
         id: 'racha-khvanchkara-2021',
@@ -120,8 +169,17 @@ export const wineriesData = [
         year: 2021,
         priceGel: 78,
         description: 'ხავერდოვანი ტექსტურა და ჟოლოს ტკბილი არომატი.',
-        image:
-          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-rose.jpg',
+      },
+      {
+        id: 'racha-mujuretuli-2023',
+        name: 'მუჯურეთული',
+        type: 'მშრალი წითელი',
+        grape: 'მუჯურეთული',
+        year: 2023,
+        priceGel: 55,
+        description: 'ალუბლის ნოტები, მსუბუქი სხეული და ახალი მოსავლის სიახლე.',
+        image: '/images/wine-red.jpg',
       },
     ],
   },
@@ -132,15 +190,23 @@ export const wineriesData = [
     village: 'ობჩა',
     foundedYear: 2009,
     acceptsVisitors: true,
+    vineyardHa: 4.5,
+    visit: {
+      includes: [
+        { title: 'დეგუსტაცია', detail: '5 ღვინო · 45 წუთი' },
+        { title: 'ქართული სუფრა', detail: '2 საათი' },
+        { title: 'მარნის ტური', detail: '25 წუთი' },
+      ],
+      pricePerPerson: 80,
+    },
     description: 'ცოლიკოური და ციცქა — იმერული სტილის მსუბუქი და დახვეწილი ღვინოები.',
     history:
       'იმერული ქარავი იმერული მეღვინეობის პოპულარიზაციის იდეით დაარსდა. მარნის მთავარი კონცეფციაა მსუბუქი, არომატული და საკვებთან მარტივად შესახამებელი ღვინოების შექმნა. ოჯახმა ძველი ოდა სახლის ეზოში აღადგინა ისტორიული საწნახელი, რის გამოც სტუმრები ტრადიციულ გარემოსთან ახლოს ეცნობიან პროცესს. მარანი აქტიურად მუშაობს ახალგაზრდა მეღვინეებთან და რეგიონის მცირე მევენახეებთან.',
-    image:
-      'https://images.unsplash.com/photo-1462887749044-b47cb05b83b8?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/winery5-exterior.jpg',
     gallery: [
-      'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',
+      '/images/winery2-exterior.jpg',
+      '/images/winery3-exterior.jpg',
+      '/images/winery6-exterior.jpg',
     ],
     wines: [
       {
@@ -151,8 +217,7 @@ export const wineriesData = [
         year: 2023,
         priceGel: 38,
         description: 'სიცოცხლით სავსე მჟავიანობა და თეთრი ხილის არომატი.',
-        image:
-          'https://images.unsplash.com/photo-1470158499416-75be9aa0c4db?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-white.jpg',
       },
       {
         id: 'imeruli-tsolikouri-2022',
@@ -162,8 +227,7 @@ export const wineriesData = [
         year: 2022,
         priceGel: 41,
         description: 'ციტრუსის ნოტები და მსუბუქი მინერალური ხასიათი.',
-        image:
-          'https://images.unsplash.com/photo-1518735869015-566a18eae4b6?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-white.jpg',
       },
     ],
   },
@@ -174,15 +238,23 @@ export const wineriesData = [
     village: 'ატენი',
     foundedYear: 2015,
     acceptsVisitors: true,
+    vineyardHa: 6.3,
+    visit: {
+      includes: [
+        { title: 'დეგუსტაცია', detail: '6 ღვინო · 50 წუთი' },
+        { title: 'ქართული სუფრა', detail: '2.5 საათი' },
+        { title: 'მარნის ტური', detail: '35 წუთი' },
+      ],
+      pricePerPerson: 95,
+    },
     description: 'ხილის არომატებით მდიდარი თეთრი ღვინოები და სტუმარზე მორგებული ტური.',
     history:
       'ქართლის მთები ახალგაზრდა მეღვინეთა გუნდმა შექმნა, რომელმაც ატენის ხეობაში მცირე ვენახები გააერთიანა. მათი მიდგომა ორიენტირებულია სისუფთავეზე, კონტროლირებულ ფერმენტაციაზე და დაბალ ჩარევაზე. მარანი ხშირად მასპინძლობს დეგუსტაციებს, სადაც სტუმრებს რეგიონული სამზარეულოც ხვდებათ. ეს სივრცე განსაკუთრებით მიმზიდველია მათთვის, ვინც კლასიკური ქართლის თეთრი ღვინოების გაცნობას იწყებს.',
-    image:
-      'https://images.unsplash.com/photo-1528821128474-25f6f37f7a49?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/winery1-exterior.jpg',
     gallery: [
-      'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1514361892635-eae31ec0d1eb?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504712598893-24159a89200e?auto=format&fit=crop&w=1200&q=80',
+      '/images/interior1.jpg',
+      '/images/interior2.jpg',
+      '/images/vineyard-detail.jpg',
     ],
     wines: [
       {
@@ -193,8 +265,7 @@ export const wineriesData = [
         year: 2023,
         priceGel: 39,
         description: 'სუფთა, მსუბუქი და ცოცხალი ღვინო ყოველდღიური სუფრისთვის.',
-        image:
-          'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-white.jpg',
       },
       {
         id: 'kartli-goruli-mtsvane-2022',
@@ -204,8 +275,7 @@ export const wineriesData = [
         year: 2022,
         priceGel: 43,
         description: 'მწვანე ვაშლისა და ყვავილოვანი ნოტების ჰარმონიული ბალანსი.',
-        image:
-          'https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-white.jpg',
       },
     ],
   },
@@ -216,15 +286,23 @@ export const wineriesData = [
     village: 'სენაკი',
     foundedYear: 2011,
     acceptsVisitors: false,
+    vineyardHa: 3.7,
+    visit: {
+      includes: [
+        { title: 'დეგუსტაცია', detail: '4 ღვინო · 40 წუთი' },
+        { title: 'ქართული სუფრა', detail: '2 საათი' },
+        { title: 'მარნის ტური', detail: '20 წუთი' },
+      ],
+      pricePerPerson: 80,
+    },
     description: 'დასავლური ტერუარის უნიკალური ღვინოები და თბილი მეგრული მასპინძლობა.',
     history:
       'ოდა მარანი მეგრული ოდის ეზოში ჩამოყალიბდა და მიზნად დაისახა დასავლეთ საქართველოს ნაკლებად ცნობილი ჯიშების გაცოცხლება. აქ წარმოება მცირეა, თუმცა თითოეული ბოთლი დეტალებზე ორიენტირებული მუშაობის შედეგია. ოჯახი მჭიდროდ თანამშრომლობს მეზობელ სოფლებთან და სეზონურად აწყობს ღია კარის დღეებს. მიუხედავად მცირე მოცულობისა, მარანი უკვე ერთ-ერთ საინტერესო ადგილად მიიჩნევა სამეგრელოს ღვინის რუკაზე.',
-    image:
-      'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/oda.jpg',
     gallery: [
-      'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',
+      '/images/winery2-exterior.jpg',
+      '/images/winery3-exterior.jpg',
+      '/images/winery6-exterior.jpg',
     ],
     wines: [
       {
@@ -235,8 +313,7 @@ export const wineriesData = [
         year: 2021,
         priceGel: 64,
         description: 'დელიკატური არომატი, მსუბუქი ტანინები და ხანგრძლივი დაბოლოება.',
-        image:
-          'https://images.unsplash.com/photo-1518735869015-566a18eae4b6?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-red.jpg',
       },
       {
         id: 'samegrelo-tsolikauri-2022',
@@ -246,8 +323,7 @@ export const wineriesData = [
         year: 2022,
         priceGel: 42,
         description: 'ხილის მსუბუქი ტონები და ნაზი მინერალური ხასიათი.',
-        image:
-          'https://images.unsplash.com/photo-1514361892635-eae31ec0d1eb?auto=format&fit=crop&w=900&q=80',
+        image: '/images/wine-white.jpg',
       },
     ],
   },

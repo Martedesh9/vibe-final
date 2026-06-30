@@ -52,6 +52,7 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  margin-left: auto;
 }
 
 .navbar__link {
@@ -83,6 +84,34 @@
 
 .navbar__logout {
   border: 1px solid rgba(92, 26, 46, 0.2);
+}
+
+.navbar__cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.navbar__cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--color-wine);
+  color: var(--color-cream);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.navbar__cta {
+  margin-left: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
 }
 
 .navbar__toggle {

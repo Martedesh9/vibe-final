@@ -3,16 +3,17 @@ import { NavLink, Link } from 'react-router-dom'
 import './Navbar.css'
 import BrandMark from './BrandMark'
 import { useAuth } from '../context/AuthContext'
+import { useCart } from '../context/CartContext'
 
 const navLinks = [
   { to: '/', label: 'მთავარი', end: true },
-  { to: '/maranebi', label: 'მარნები' },
-  { to: '/kalata', label: 'კალათა' },
+  { to: '/maranebi', label: 'მეღვინეები' },
 ]
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { currentUser, isLoggedIn, logout } = useAuth()
+  const { cartCount } = useCart()
 
   return (
     <header className="navbar">
@@ -51,6 +52,17 @@ export default function Navbar() {
               >
                 პროფილი
               </NavLink>
+              {currentUser.role === 'guest' && (
+                <NavLink
+                  to="/kalata"
+                  className={({ isActive }) =>
+                    `navbar__link navbar__cart ${isActive ? 'navbar__link--active' : ''}`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  კალათა{cartCount > 0 && <span className="navbar__cart-badge">{cartCount}</span>}
+                </NavLink>
+              )}
               <button
                 type="button"
                 className="navbar__link navbar__logout"
@@ -73,6 +85,13 @@ export default function Navbar() {
               შესვლა
             </NavLink>
           )}
+          <Link
+            to="/maranebi"
+            className="btn btn-primary navbar__cta"
+            onClick={() => setMenuOpen(false)}
+          >
+            Go Marani
+          </Link>
         </nav>
 
         <button

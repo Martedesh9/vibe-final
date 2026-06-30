@@ -3,65 +3,315 @@
 }
 
 .profile-page__wrap {
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 780px;
 }
 
-.profile-head,
-.profile-block {
+/* Hero card */
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   background: var(--color-white);
-  border: 1px solid rgba(92, 26, 46, 0.12);
-  border-radius: 14px;
-  padding: 1rem;
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-soft);
 }
 
-.profile-head p {
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-wine);
+  color: var(--color-cream);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-hero__info {
+  flex: 1;
+}
+
+.profile-hero__name {
+  font-size: 1.4rem;
+  color: var(--color-wine-dark);
+  margin-bottom: 0.2rem;
+}
+
+.profile-hero__email {
+  font-size: 0.9rem;
   color: var(--color-text-muted);
 }
 
-.profile-block h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.6rem;
+.profile-role-badge {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(92, 26, 46, 0.1);
+  color: var(--color-wine-dark);
+  white-space: nowrap;
 }
 
-.profile-list,
-.profile-cards {
-  display: grid;
-  gap: 0.55rem;
+.profile-role-badge--winemaker {
+  background: rgba(184, 149, 106, 0.18);
+  color: #7a5a2a;
 }
 
-.profile-cards li,
-.wine-edit {
-  border: 1px solid rgba(92, 26, 46, 0.14);
+/* Blocks */
+.profile-block {
+  background: var(--color-white);
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.profile-block__title {
+  font-size: 1.15rem;
+  color: var(--color-wine-dark);
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(92, 26, 46, 0.08);
+}
+
+.profile-empty {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+}
+
+/* Cart summary */
+.profile-cart__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  background: rgba(92, 26, 46, 0.05);
   border-radius: 10px;
-  padding: 0.65rem;
-  background: #fff;
+  font-size: 0.9rem;
+  color: var(--color-wine-dark);
+  margin-bottom: 0.75rem;
 }
 
-.profile-field {
+.profile-cart__total {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-wine);
+}
+
+/* Favorite wineries grid */
+.profile-winery-grid {
   display: grid;
-  gap: 0.3rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.85rem;
+}
+
+.profile-winery-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(92, 26, 46, 0.1);
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.profile-winery-card:hover {
+  transform: translateY(-3px);
+}
+
+.profile-winery-card__img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-winery-card__name {
+  display: block;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-wine-dark);
+}
+
+/* Timeline */
+.profile-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.profile-timeline__item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(92, 26, 46, 0.07);
+}
+
+.profile-timeline__item:last-child {
+  border-bottom: none;
+}
+
+.profile-timeline__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+}
+
+.profile-timeline__body {
+  flex: 1;
+}
+
+.profile-timeline__title {
+  font-weight: 600;
+  color: var(--color-wine-dark);
+  font-size: 0.95rem;
+}
+
+.profile-timeline__meta {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+.profile-timeline__date {
+  font-size: 0.8rem;
+  color: rgba(107, 83, 68, 0.6);
+  margin-top: 0.15rem;
+}
+
+/* Winemaker banner */
+.profile-block--winery-banner {
+  padding: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+}
+
+.profile-winery-banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 200px;
+}
+
+.profile-winery-banner__info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-winery-banner__region {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.profile-winery-banner__name {
+  font-size: 1.3rem;
+  color: var(--color-wine-dark);
+}
+
+/* Form elements */
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-wine-dark);
 }
 
 .profile-field textarea,
-.wine-add input,
-.wine-add textarea,
-.wine-edit input {
+.wine-add-form textarea,
+.wine-add-form input,
+.wine-edit-card input {
   width: 100%;
-  border: 1px solid rgba(92, 26, 46, 0.24);
-  border-radius: 8px;
-  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(92, 26, 46, 0.2);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
   font: inherit;
+  color: var(--color-text);
+  background: var(--color-cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.wine-edit {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0.45rem;
+.profile-field textarea:focus,
+.wine-add-form textarea:focus,
+.wine-add-form input:focus,
+.wine-edit-card input:focus {
+  outline: none;
+  border-color: var(--color-wine);
+  box-shadow: 0 0 0 3px rgba(92, 26, 46, 0.1);
 }
 
-.wine-add {
-  margin: 0.8rem 0;
+/* Wine edit grid */
+.wine-edit-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.wine-edit-card {
   display: grid;
-  gap: 0.45rem;
+  grid-template-columns: 2fr 1.5fr 1.5fr 0.8fr 0.8fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--color-cream);
+  border-radius: 12px;
+  border: 1px solid rgba(92, 26, 46, 0.1);
+}
+
+/* Wine add form */
+.wine-add-form {
+  border: 1px dashed rgba(92, 26, 46, 0.22);
+  border-radius: 14px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: rgba(245, 240, 232, 0.5);
+}
+
+.wine-add-form__title {
+  font-size: 1rem;
+  color: var(--color-wine-dark);
+  margin-bottom: 0.1rem;
+}
+
+.wine-add-form__grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 0.8fr 0.8fr;
+  gap: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .profile-block--winery-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-winery-banner__img {
+    height: 180px;
+    min-height: unset;
+  }
+
+  .wine-edit-card,
+  .wine-add-form__grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }

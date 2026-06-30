@@ -1,4 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <rect width="32" height="32" rx="6" fill="#5C1A2E"/>
-  <text x="16" y="22" text-anchor="middle" fill="#F5F0E8" font-family="serif" font-size="16" font-weight="600">მ</text>
+  <path d="M16 29 C14 27 8 25 6 21 C3 16 5 10 9 8 C7 6 6 3 9 2 C12 1 14 4 16 5 C18 4 20 1 23 2 C26 3 25 6 23 8 C27 10 29 16 26 21 C24 25 18 27 16 29 Z" fill="#F5F0E8"/>
+  <line x1="16" y1="5" x2="16" y2="29" stroke="#5C1A2E" stroke-width="1"/>
+  <path d="M16 13 L9 8 M16 13 L23 8" stroke="#5C1A2E" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M16 19 L8 17 M16 19 L24 17" stroke="#5C1A2E" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M16 24 L10 24 M16 24 L22 24" stroke="#5C1A2E" stroke-width="0.8" stroke-linecap="round"/>
 </svg>

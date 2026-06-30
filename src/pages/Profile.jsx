@@ -1,14 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useCart } from '../context/CartContext'
 import { wineriesData } from '../data/wineries'
 import './Profile.css'
 
 const formatDate = (value) =>
-  new Date(value).toLocaleString('ka-GE', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  })
+  new Date(value).toLocaleString('ka-GE', { dateStyle: 'medium', timeStyle: 'short' })
 
 const emptyWine = {
   name: '',
@@ -20,8 +18,19 @@ const emptyWine = {
   image: '',
 }
 
+function Avatar({ name }) {
+  const initials = name
+    .split(' ')
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+  return <div className="profile-avatar">{initials}</div>
+}
+
 export default function Profile() {
   const { currentUser, updateWineryProfile } = useAuth()
+  const { items: cartItems, cartCount, totalAmount } = useCart()
   const [draft, setDraft] = useState(null)
   const [newWine, setNewWine] = useState(emptyWine)
 
@@ -31,9 +40,7 @@ export default function Profile() {
   )
 
   useEffect(() => {
-    if (currentUser?.role === 'winemaker') {
-      setDraft(currentUser.wineryProfile)
-    }
+    if (currentUser?.role === 'winemaker') setDraft(currentUser.wineryProfile)
   }, [currentUser])
 
   const onSaveWineryProfile = () => {
@@ -65,216 +72,230 @@ export default function Profile() {
     }))
   }
 
+  const myWinery = wineriesData.find((w) => w.id === currentUser.wineryId)
+
   return (
     <section className="profile-page">
       <div className="container profile-page__wrap">
-        <header className="profile-head">
-          <h1 className="section-title">პროფილი</h1>
-          <p>
-            {currentUser.name} • {currentUser.role === 'guest' ? 'სტუმარი' : 'მეღვინე'}
-          </p>
-          <p>{currentUser.email}</p>
-        </header>
+
+        {/* User card */}
+        <div className="profile-hero">
+          <Avatar name={currentUser.name} />
+          <div className="profile-hero__info">
+            <h1 className="profile-hero__name">{currentUser.name}</h1>
+            <p className="profile-hero__email">{currentUser.email}</p>
+          </div>
+          <span className={`profile-role-badge ${currentUser.role === 'winemaker' ? 'profile-role-badge--winemaker' : ''}`}>
+            {currentUser.role === 'guest' ? 'სტუმარი' : 'მეღვინე'}
+          </span>
+        </div>
 
         {currentUser.role === 'guest' ? (
           <>
-            <section className="profile-block">
-              <h2>ფავორიტი მარნები</h2>
+            {/* Cart */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">კალათა</h2>
+              {cartCount === 0 ? (
+                <p className="profile-empty">კალათა ცარიელია.</p>
+              ) : (
+                <div className="profile-cart">
+                  <div className="profile-cart__summary">
+                    <span>{cartCount} პოზიცია</span>
+                    <span className="profile-cart__total">{totalAmount} ₾</span>
+                  </div>
+                  <div className="profile-timeline">
+                    {cartItems.map((item) => (
+                      <div key={item.wineId} className="profile-timeline__item">
+                        <div className="profile-timeline__dot" />
+                        <div className="profile-timeline__body">
+                          <p className="profile-timeline__title">{item.wine.name}</p>
+                          <p className="profile-timeline__meta">{item.wine.wineryName} · {item.quantity} ბოთლი · {item.lineTotal} ₾</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ marginTop: '1rem' }}>
+                    <Link to="/kalata" className="btn btn-primary">შეკვეთის გაფორმება →</Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Favorites */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">ფავორიტი მარნები</h2>
               {favoriteWineries.length === 0 ? (
-                <p>ჯერ ფავორიტი მარანი არ გაქვს.</p>
+                <p className="profile-empty">ჯერ ფავორიტი მარანი არ გაქვს.</p>
               ) : (
-                <ul className="profile-list">
+                <div className="profile-winery-grid">
                   {favoriteWineries.map((winery) => (
-                    <li key={winery.id}>
-                      <Link to={`/marani/${winery.id}`}>{winery.name}</Link>
-                    </li>
+                    <Link key={winery.id} to={`/marani/${winery.id}`} className="profile-winery-card">
+                      <img src={winery.image} alt={winery.name} className="profile-winery-card__img" />
+                      <span className="profile-winery-card__name">{winery.name}</span>
+                    </Link>
                   ))}
-                </ul>
+                </div>
               )}
-            </section>
+            </div>
 
-            <section className="profile-block">
-              <h2>შეკვეთების ისტორია</h2>
-              {currentUser.orders?.length ? (
-                <ul className="profile-cards">
-                  {currentUser.orders.map((order) => (
-                    <li key={order.id}>
-                      <strong>{formatDate(order.createdAt)}</strong>
-                      <p>ჯამი: {order.totalAmount} ლარი</p>
-                      <p>პოზიციები: {order.items.length}</p>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>შეკვეთების ისტორია ჯერ ცარიელია.</p>
-              )}
-            </section>
-
-            <section className="profile-block">
-              <h2>ვიზიტის მოთხოვნები</h2>
+            {/* Visits */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">ვიზიტის ჯავშნები</h2>
               {currentUser.visits?.length ? (
-                <ul className="profile-cards">
+                <div className="profile-timeline">
                   {currentUser.visits.map((visit) => (
-                    <li key={visit.id}>
-                      <strong>{visit.wineryName}</strong>
-                      <p>{formatDate(visit.createdAt)}</p>
-                      <p>სტუმრები: {visit.guests}</p>
-                    </li>
+                    <div key={visit.id} className="profile-timeline__item">
+                      <div className="profile-timeline__dot" />
+                      <div className="profile-timeline__body">
+                        <p className="profile-timeline__title">{visit.wineryName}</p>
+                        <p className="profile-timeline__meta">{visit.date} · {visit.guests} სტუმარი</p>
+                        <p className="profile-timeline__date">{formatDate(visit.createdAt)}</p>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               ) : (
-                <p>ვიზიტის მოთხოვნა ჯერ არ გაქვს.</p>
+                <p className="profile-empty">ვიზიტის ჯავშანი ჯერ არ გაქვს.</p>
               )}
-            </section>
+            </div>
+
+            {/* Orders */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">შეკვეთების ისტორია</h2>
+              {currentUser.orders?.length ? (
+                <div className="profile-timeline">
+                  {currentUser.orders.map((order) => (
+                    <div key={order.id} className="profile-timeline__item">
+                      <div className="profile-timeline__dot" />
+                      <div className="profile-timeline__body">
+                        <p className="profile-timeline__title">{order.totalAmount} ₾</p>
+                        <p className="profile-timeline__meta">{order.items.length} პოზიცია</p>
+                        <p className="profile-timeline__date">{formatDate(order.createdAt)}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="profile-empty">შეკვეთების ისტორია ცარიელია.</p>
+              )}
+            </div>
           </>
         ) : (
           <>
-            <section className="profile-block">
-              <h2>ჩემი მარანი</h2>
-              <p>
-                {wineriesData.find((w) => w.id === currentUser.wineryId)?.name} (
-                {currentUser.wineryId})
-              </p>
-              <label className="profile-field">
-                მარნის აღწერა
-                <textarea
-                  rows="4"
-                  value={draft?.description || ''}
-                  onChange={(event) =>
-                    setDraft((prev) => ({ ...prev, description: event.target.value }))
-                  }
-                />
-              </label>
-            </section>
+            {/* Winery info */}
+            {myWinery && (
+              <div className="profile-block profile-block--winery-banner">
+                <img src={myWinery.image} alt={myWinery.name} className="profile-winery-banner__img" />
+                <div className="profile-winery-banner__info">
+                  <span className="profile-winery-banner__region">{myWinery.region} · {myWinery.village}</span>
+                  <h2 className="profile-winery-banner__name">{myWinery.name}</h2>
+                  <label className="profile-field">
+                    <span>მარნის აღწერა</span>
+                    <textarea
+                      rows="3"
+                      value={draft?.description || ''}
+                      onChange={(e) => setDraft((p) => ({ ...p, description: e.target.value }))}
+                    />
+                  </label>
+                  <button type="button" className="btn btn-primary" onClick={onSaveWineryProfile}>
+                    შენახვა
+                  </button>
+                </div>
+              </div>
+            )}
 
-            <section className="profile-block">
-              <h2>ჩემი ღვინოები</h2>
-              <div className="profile-cards">
+            {/* Wines */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">ჩემი ღვინოები</h2>
+              <div className="wine-edit-grid">
                 {draft?.wines?.map((wine) => (
-                  <div key={wine.id} className="wine-edit">
-                    <input
-                      value={wine.name}
-                      onChange={(event) => updateWineField(wine.id, 'name', event.target.value)}
-                    />
-                    <input
-                      value={wine.type}
-                      onChange={(event) => updateWineField(wine.id, 'type', event.target.value)}
-                    />
-                    <input
-                      value={wine.grape}
-                      onChange={(event) => updateWineField(wine.id, 'grape', event.target.value)}
-                    />
-                    <input
-                      type="number"
-                      value={wine.year}
-                      onChange={(event) => updateWineField(wine.id, 'year', event.target.value)}
-                    />
-                    <input
-                      type="number"
-                      value={wine.priceGel}
-                      onChange={(event) =>
-                        updateWineField(wine.id, 'priceGel', event.target.value)
-                      }
-                    />
+                  <div key={wine.id} className="wine-edit-card">
+                    <input placeholder="დასახელება" value={wine.name}
+                      onChange={(e) => updateWineField(wine.id, 'name', e.target.value)} />
+                    <input placeholder="ტიპი" value={wine.type}
+                      onChange={(e) => updateWineField(wine.id, 'type', e.target.value)} />
+                    <input placeholder="ჯიში" value={wine.grape}
+                      onChange={(e) => updateWineField(wine.id, 'grape', e.target.value)} />
+                    <input type="number" placeholder="წელი" value={wine.year}
+                      onChange={(e) => updateWineField(wine.id, 'year', e.target.value)} />
+                    <input type="number" placeholder="ფასი ₾" value={wine.priceGel}
+                      onChange={(e) => updateWineField(wine.id, 'priceGel', e.target.value)} />
                   </div>
                 ))}
               </div>
-              <div className="wine-add">
-                <h3>ახალი ღვინის დამატება</h3>
-                <input
-                  placeholder="დასახელება"
-                  value={newWine.name}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, name: event.target.value }))
-                  }
-                />
-                <input
-                  placeholder="ტიპი"
-                  value={newWine.type}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, type: event.target.value }))
-                  }
-                />
-                <input
-                  placeholder="ჯიში"
-                  value={newWine.grape}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, grape: event.target.value }))
-                  }
-                />
-                <input
-                  type="number"
-                  placeholder="წელი"
-                  value={newWine.year}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, year: event.target.value }))
-                  }
-                />
-                <input
-                  type="number"
-                  placeholder="ფასი"
-                  value={newWine.priceGel}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, priceGel: event.target.value }))
-                  }
-                />
-                <textarea
-                  rows="3"
-                  placeholder="აღწერა"
-                  value={newWine.description}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, description: event.target.value }))
-                  }
-                />
-                <input
-                  placeholder="ფოტოს URL"
-                  value={newWine.image}
-                  onChange={(event) =>
-                    setNewWine((prev) => ({ ...prev, image: event.target.value }))
-                  }
-                />
+
+              <div className="wine-add-form">
+                <h3 className="wine-add-form__title">ახალი ღვინის დამატება</h3>
+                <div className="wine-add-form__grid">
+                  {[
+                    ['დასახელება', 'name', 'text'],
+                    ['ტიპი', 'type', 'text'],
+                    ['ჯიში', 'grape', 'text'],
+                    ['წელი', 'year', 'number'],
+                    ['ფასი ₾', 'priceGel', 'number'],
+                  ].map(([placeholder, key, type]) => (
+                    <input key={key} type={type} placeholder={placeholder}
+                      value={newWine[key]}
+                      onChange={(e) => setNewWine((p) => ({ ...p, [key]: e.target.value }))} />
+                  ))}
+                </div>
+                <textarea rows="2" placeholder="აღწერა" value={newWine.description}
+                  onChange={(e) => setNewWine((p) => ({ ...p, description: e.target.value }))} />
+                <input placeholder="ფოტოს URL" value={newWine.image}
+                  onChange={(e) => setNewWine((p) => ({ ...p, image: e.target.value }))} />
                 <button type="button" className="btn btn-outline" onClick={addWine}>
-                  დამატება
+                  + დამატება
                 </button>
               </div>
-              <button type="button" className="btn btn-primary" onClick={onSaveWineryProfile}>
-                ცვლილებების შენახვა
-              </button>
-            </section>
 
-            <section className="profile-block">
-              <h2>შემოსული ვიზიტის მოთხოვნები</h2>
+              <div style={{ marginTop: '1rem' }}>
+                <button type="button" className="btn btn-primary" onClick={onSaveWineryProfile}>
+                  ცვლილებების შენახვა
+                </button>
+              </div>
+            </div>
+
+            {/* Incoming visits */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">შემოსული ვიზიტის ჯავშნები</h2>
               {currentUser.incomingVisits?.length ? (
-                <ul className="profile-cards">
+                <div className="profile-timeline">
                   {currentUser.incomingVisits.map((visit) => (
-                    <li key={visit.id}>
-                      <strong>{visit.name}</strong>
-                      <p>{visit.phone}</p>
-                      <p>{visit.date} • სტუმრები: {visit.guests}</p>
-                    </li>
+                    <div key={visit.id} className="profile-timeline__item">
+                      <div className="profile-timeline__dot" />
+                      <div className="profile-timeline__body">
+                        <p className="profile-timeline__title">{visit.name}</p>
+                        <p className="profile-timeline__meta">{visit.date} · {visit.guests} სტუმარი · {visit.phone}</p>
+                        <p className="profile-timeline__date">{formatDate(visit.createdAt)}</p>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               ) : (
-                <p>ვიზიტის მოთხოვნები ჯერ არ არის.</p>
+                <p className="profile-empty">ვიზიტის ჯავშნები ჯერ არ არის.</p>
               )}
-            </section>
+            </div>
 
-            <section className="profile-block">
-              <h2>შემოსული შეკვეთები</h2>
+            {/* Incoming orders */}
+            <div className="profile-block">
+              <h2 className="profile-block__title">შემოსული შეკვეთები</h2>
               {currentUser.incomingOrders?.length ? (
-                <ul className="profile-cards">
+                <div className="profile-timeline">
                   {currentUser.incomingOrders.map((order) => (
-                    <li key={order.id}>
-                      <strong>{order.customer.name}</strong>
-                      <p>{order.customer.phone}</p>
-                      <p>პოზიციები: {order.items.length}</p>
-                    </li>
+                    <div key={order.id} className="profile-timeline__item">
+                      <div className="profile-timeline__dot" />
+                      <div className="profile-timeline__body">
+                        <p className="profile-timeline__title">{order.customer?.name}</p>
+                        <p className="profile-timeline__meta">{order.customer?.phone} · {order.items.length} პოზიცია</p>
+                        <p className="profile-timeline__date">{formatDate(order.createdAt)}</p>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               ) : (
-                <p>შეკვეთები ჯერ არ არის.</p>
+                <p className="profile-empty">შეკვეთები ჯერ არ არის.</p>
               )}
-            </section>
+            </div>
           </>
         )}
       </div>

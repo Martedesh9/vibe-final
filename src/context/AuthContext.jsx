@@ -54,7 +54,6 @@ export function AuthProvider({ children }) {
       return { ok: false, error: 'ეს მეილი უკვე გამოყენებულია.' }
     }
 
-    const wineryId = role === 'winemaker' ? chooseWineryId(users) : null
     const newUser = {
       id: `u-${Date.now()}`,
       name: name.trim(),
@@ -66,8 +65,8 @@ export function AuthProvider({ children }) {
       visits: [],
       incomingOrders: [],
       incomingVisits: [],
-      wineryId,
-      wineryProfile: role === 'winemaker' ? createWineryProfile(wineryId) : null,
+      wineryId: null,
+      wineryProfile: role === 'winemaker' ? { description: '', wines: [] } : null,
     }
     setUsers((prev) => [...prev, newUser])
     setSessionUserId(newUser.id)
@@ -84,7 +83,10 @@ export function AuthProvider({ children }) {
     return { ok: true }
   }
 
-  const logout = () => setSessionUserId(null)
+  const logout = () => {
+    setSessionUserId(null)
+    localStorage.removeItem('marani_cart_v1')
+  }
 
   const updateCurrentUser = (updater) => {
     if (!currentUser) return

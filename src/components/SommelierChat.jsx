@@ -1,3 +1,4 @@
+const WEBHOOK_URL = 'https://mtedeshvili.app.n8n.cloud/webhook/sommelier'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { wineriesData } from '../data/wineries'
@@ -91,33 +92,56 @@ export default function SommelierChat() {
     [],
   )
 
-  const openChat = () => {
-    setIsOpen(true)
-    setMessages((prev) => (prev.length === 0 ? [greeting] : prev))
-  }
-
-  const sendMessage = (event) => {
+  const sendMessage = async (event) => {
     event.preventDefault()
     const text = input.trim()
     if (!text) return
-
-    const recommendations = getRecommendations(text)
+  
     setMessages((prev) => [
       ...prev,
-      {
-        id: `u-${Date.now()}`,
-        role: 'user',
-        text,
-        recommendations: [],
-      },
-      {
-        id: `b-${Date.now() + 1}`,
-        role: 'bot',
-        text: 'შეგიძლია ეს ვარიანტები სცადო:',
-        recommendations,
-      },
+      { id: `u-${Date.now()}`, role: 'user', text, recommendations: [] },
+      { id: `b-loading`, role: 'bot', text: '...', recommendations: [] },
     ])
     setInput('')
+  
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text }),
+      })
+      const raw = await response.text()
+      const data = JSON.parse(raw.replace(/```json|```/g, '').trim())
+  
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === 'b-loading'
+            ? {
+                ...msg,
+                id: `b-${Date.now()}`,
+                text: data.reply || 'აი რეკომენდაციები:',
+                recommendations: (data.recommendations || []).map((r) => ({
+                  wine: {
+                    id: r.wineryId + '-' + r.wineName,
+                    name: r.wineName,
+                    wineryId: r.wineryId,
+                    wineryName: r.wineryName,
+                  },
+                  reason: r.reason,
+                })),
+              }
+            : msg,
+        ),
+      )
+    } catch {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === 'b-loading'
+            ? { ...msg, id: `b-err`, text: 'სომელიე ამჟამად მიუწვდომელია, სცადე მოგვიანებით.' }
+            : msg,
+        ),
+      )
+    }
   }
 
   return (
@@ -174,7 +198,7 @@ export default function SommelierChat() {
         </div>
       )}
 
-      <button type="button" className="sommelier__trigger" onClick={openChat}>
+      <button type="button" className="sommelier__trigger" onClick={() => setIsOpen(true)}>
         🍷 სომელიე
       </button>
     </div>

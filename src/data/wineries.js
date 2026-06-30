@@ -20,8 +20,8 @@ export const wineriesData = [
       'მარანი თელიანი 1998 წელს დაარსდა ერთი ოჯახის მიერ, რომლის მთავარი მიზანი იყო წინაპრებისგან მიღებული ღვინის დაყენების წესის შენარჩუნება. პირველ წლებში მცირე რაოდენობის საფერავი და რქაწითელი მხოლოდ ადგილობრივ ბაზარზე იყიდებოდა, თუმცა დროთა განმავლობაში მარანმა საკუთარი სტილი ჩამოაყალიბა — დაბალი ჩარევა, ადგილობრივი საფუარი და ქვევრის ხანგრძლივი დაძველება. დღეს მარანში სტუმრები ხედავენ ვენახიდან ბოთლამდე მთელ პროცესს, ეცნობიან ოჯახის ისტორიას და აგემოვნებენ კლასიკურ და ექსპერიმენტულ პარტიებს.',
     image: '/images/winery3-exterior.jpg',
     gallery: [
-      '/images/winery2-exterior.jpg',
-      '/images/winery3-exterior.jpg',
+      '/images/teliani-interior1.jpg',
+      '/images/teliani-interior2.jpg',
       '/images/winery6-exterior.jpg',
     ],
     wines: [
@@ -88,9 +88,9 @@ export const wineriesData = [
       'მარანი გურჯაანი სამი ძმის საერთო იდეიდან დაიბადა. მათ მამის ძველი მარანი აღადგინეს და ბიო-მევენახეობის პრაქტიკები დანერგეს. აქ ყველა პარტია მცირე მოცულობით მზადდება, რათა თითო მოსავლის ხასიათი მაქსიმალურად შენარჩუნდეს. ოჯახი განსაკუთრებულ ყურადღებას უთმობს ვაზის ხელით მოვლას, ქვევრების ჰიგიენას და სტუმრების მიღებას, რის გამოც მარანი როგორც ადგილობრივ, ისე უცხოელ ენთუზიასტრებში პოპულარული გახდა.',
     image: '/images/gurjaani.jpg',
     gallery: [
-      '/images/winery2-exterior.jpg',
-      '/images/winery3-exterior.jpg',
-      '/images/winery6-exterior.jpg',
+      '/images/gurjaani-interior1.jpg',
+      '/images/gurjaani-interior-2.jpg',
+      '/images/gurjaani-interior3.jpg',
     ],
     wines: [
       {
@@ -148,7 +148,7 @@ export const wineriesData = [
     gallery: [
       '/images/winery2-exterior.jpg',
       '/images/winery3-exterior.jpg',
-      '/images/winery6-exterior.jpg',
+      '/images/racha-interior3.jpg',
     ],
     wines: [
       {
@@ -204,8 +204,8 @@ export const wineriesData = [
       'იმერული ქარავი იმერული მეღვინეობის პოპულარიზაციის იდეით დაარსდა. მარნის მთავარი კონცეფციაა მსუბუქი, არომატული და საკვებთან მარტივად შესახამებელი ღვინოების შექმნა. ოჯახმა ძველი ოდა სახლის ეზოში აღადგინა ისტორიული საწნახელი, რის გამოც სტუმრები ტრადიციულ გარემოსთან ახლოს ეცნობიან პროცესს. მარანი აქტიურად მუშაობს ახალგაზრდა მეღვინეებთან და რეგიონის მცირე მევენახეებთან.',
     image: '/images/winery5-exterior.jpg',
     gallery: [
-      '/images/winery2-exterior.jpg',
-      '/images/winery3-exterior.jpg',
+      '/images/karavi-interior1.jpg',
+      '/images/karavi-interior2.jpg',
       '/images/winery6-exterior.jpg',
     ],
     wines: [
@@ -300,8 +300,8 @@ export const wineriesData = [
       'ოდა მარანი მეგრული ოდის ეზოში ჩამოყალიბდა და მიზნად დაისახა დასავლეთ საქართველოს ნაკლებად ცნობილი ჯიშების გაცოცხლება. აქ წარმოება მცირეა, თუმცა თითოეული ბოთლი დეტალებზე ორიენტირებული მუშაობის შედეგია. ოჯახი მჭიდროდ თანამშრომლობს მეზობელ სოფლებთან და სეზონურად აწყობს ღია კარის დღეებს. მიუხედავად მცირე მოცულობისა, მარანი უკვე ერთ-ერთ საინტერესო ადგილად მიიჩნევა სამეგრელოს ღვინის რუკაზე.',
     image: '/images/oda.jpg',
     gallery: [
-      '/images/winery2-exterior.jpg',
-      '/images/winery3-exterior.jpg',
+      '/images/oda-interior1.jpg',
+      '/images/oda-interior2.jpg',
       '/images/winery6-exterior.jpg',
     ],
     wines: [
